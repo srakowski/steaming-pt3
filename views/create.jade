@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1 Create Steamer
+    form(action="/create", method="post", onsubmit="return formContent()")
+        label Title
+        br
+        input(type="text", placeholder="the title of your steamer", name="title")
+        br
+        br            
+        label Content
+        br
+        div#editor(contenteditable="true", style="width: 100%; min-height: 400px; border: 1px solid #AAA;")
+        textarea#content(style="display: none;", name="content")        
+        br
+        br
+        button(type="submit") Create
+    script.
+        function formContent() {
+            document.getElementById("content").value = document.getElementById("editor").innerHTML;            
+            return true;
+        }

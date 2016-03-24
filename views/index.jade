@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1 Welcome to Steaming
+    - if (signedIn) {
+    p
+        a(href="/create") Create a Steamer
+    p
+        | or 
+        a(href="/sign/out") Sign out               
+    - } else {
+    p
+        a(href="sign/in") Sign in 
+        | if you already create steamers
+    p
+        a(href="sign/up") Sign Up 
+        | if you want to make steamers
+    - }
+    h2 Recent Steamers
+    div
+    for steamer in steamers
+        div
+            h2
+                a(href="/steamers/" + steamer.permalinkKey)=steamer.title
+            p=steamer.content.substring(0, 597) + "..."
+            small Posted #{steamer.dateCreated} by #{steamer.author}    
+        hr
